@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "energy_auction_api"
+version = "0.1.0"
+description = "Search API for auction data for the Brazilian energy sector. Data source: CCEE"
+authors = ["Joao Esquioga"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+fastapi = "^0.61.1"
+sqlalchemy = "^1.3.19"
+pandas = "^1.1.2"
+gunicorn = "^20.0.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0.2"
+pylint = "^2.6.0"
+mypy = "^0.782"
+yapf = "^0.30.0"
+invoke = "^1.4.1"
+uvicorn = "^0.11.8"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
