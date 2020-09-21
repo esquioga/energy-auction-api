@@ -67,9 +67,11 @@ class AunctionParser:
 
     @staticmethod
     def parse_xsl(file):
-        df = pd.read_excel(file,
+        df: pd.DataFrame = pd.read_excel(file,
                            sheet_name='Resultado Consolidado',
                            skiprows=9)
         df = df.drop(df.columns[0], axis=1)
         df.columns = AunctionParser._AUCTION_MAP.keys()
-        return df.to_json()
+        df = df.apply(lambda value: value.astype(str).str.upper())
+        df = df.replace('NÃO', False).replace('SIM', True)
+        return df.to_json(orient='records')
