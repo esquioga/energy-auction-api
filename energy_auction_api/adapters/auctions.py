@@ -72,6 +72,6 @@ class AunctionParser:
                            skiprows=9)
         df = df.drop(df.columns[0], axis=1)
         df.columns = AunctionParser._AUCTION_MAP.keys()
-        df = df.apply(lambda value: value.astype(str).str.upper())
+        df = df.applymap(lambda cell: cell.upper() if type(cell) == str else cell)
         df = df.replace('NÃO', False).replace('SIM', True)
         return df.to_json(orient='records')
