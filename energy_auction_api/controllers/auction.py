@@ -7,7 +7,7 @@ from pymongo.collection import Collection
 
 from ..adapters.auctions import parse_xsl
 
-LOGGER = getLogger(__name__)
+LOGGER = getLogger("uvicorn.error")
 
 
 class CompanyType(Enum):
@@ -24,9 +24,11 @@ class AuctionController:
     def consume_auctions(self, file):
         """Saves energy auction data"""
         auction_data = parse_xsl(file)
-        update_response = self._auction_collection.update_many(auction_data,
-                                                               upsert=True)
-        LOGGER.info(update_response.raw_result())
+        for auction in auction_data:
+            self._auction_collection.update(
+                {'auction_id': auction.get('auction_id')},
+                auction,
+                upsert=True)
 
     def get_unique_companies(
             self, company_type: CompanyType) -> List[Dict[str, str]]:
@@ -37,7 +39,8 @@ class AuctionController:
             'code':
             code,
             'name':
-            self._auction_collection.find_one(
-                {f'{company_type.value}_code':
-                 code}.get(f'{company_type.value}_company_name'))
+            self._auction_collection.find_one({
+                f'{company_type.value}_code':
+                code
+            }).get(f'{company_type.value}_name')
         } for code in company_codes]

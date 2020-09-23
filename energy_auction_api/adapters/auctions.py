@@ -74,4 +74,4 @@ def parse_xsl(file):
     _df = _df.applymap(lambda cell: cell.upper()
                        if isinstance(cell, str) else cell)
     _df = _df.replace('NÃO', False).replace('SIM', True)
-    return _df.to_json(orient='records')
+    return _df.to_dict(orient='records')
