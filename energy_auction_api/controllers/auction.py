@@ -52,23 +52,34 @@ class AuctionController:
             'total_engery_negotiated': 0,
             'auctions': []
         }
-        for item in self._auction_collection.find({"seller_code": int(company_code)}):
+        for item in self._auction_collection.find(
+            {"seller_code": int(company_code)}):
             if not result['name']:
                 result['name'] = item.get('seller_name', '')
             financial_amount = item.get('financial_amount', 0)
             energy_amount = item.get('negotiated_energy_by_contract', 0)
             result['total_earnings'] += financial_amount
-            result['total_engery_negotiated'] += item.get('negotiated_energy_by_contract', 0)
+            result['total_engery_negotiated'] += item.get(
+                'negotiated_energy_by_contract', 0)
             result['auctions'].append({
-                'id': item.get('auction_id'),
-                'auction_name': item.get('auction'),
-                'buyer': item.get('buyer_name'),
-                'financial_amount': financial_amount,
-                'energy_amount': energy_amount,
-                'ice': item.get('ice'),
-                'price_updated': item.get('price_updated'),
-                'initial_date': item.get('initial_date'),
-                'final_date': item.get('final_date')
+                'id':
+                item.get('auction_id'),
+                'auction_name':
+                item.get('auction'),
+                'buyer':
+                item.get('buyer_name'),
+                'financial_amount':
+                financial_amount,
+                'energy_amount':
+                energy_amount,
+                'ice':
+                item.get('ice'),
+                'price_updated':
+                item.get('price_updated'),
+                'initial_date':
+                item.get('initial_date'),
+                'final_date':
+                item.get('final_date')
             })
 
         return result

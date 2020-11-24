@@ -22,6 +22,7 @@ def get_buyers(auction_controller: AuctionController = get_controller(
 
 
 @ROUTER.get('/detail')
-def get_seller_details(company_code: str, auction_controller: AuctionController = get_controller(
-    'AuctionController')):
+def get_seller_details(company_code: str,
+                       auction_controller: AuctionController = get_controller(
+                           'AuctionController')):
     return auction_controller.get_company_detail(company_code)
