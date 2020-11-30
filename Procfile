@@ -1,0 +1,1 @@
+web: gunicorn --host 0.0.0.0:443 energy_auction_api.asgi:app
