@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:443 energy_auction_api.asgi:app
+web: gunicorn --bind 0.0.0.0:8000 energy_auction_api.asgi:app
