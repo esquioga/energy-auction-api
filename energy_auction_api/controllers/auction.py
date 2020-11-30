@@ -72,8 +72,8 @@ class AuctionController:
                 financial_amount,
                 'energy_amount':
                 energy_amount,
-                'ice':
-                item.get('ice'),
+                'power_source':
+                item.get('power_source'),
                 'price_updated':
                 item.get('price_updated'),
                 'initial_date':
