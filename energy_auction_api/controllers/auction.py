@@ -59,7 +59,7 @@ class AuctionController:
             financial_amount = item.get('financial_amount', 0)
             energy_amount = item.get('negotiated_energy_by_contract', 0)
             result['total_earnings'] += financial_amount
-            result['total_engery_negotiated'] += item.get(
+            result['total_energy_negotiated'] += item.get(
                 'negotiated_energy_by_contract', 0)
             result['auctions'].append({
                 'id':
