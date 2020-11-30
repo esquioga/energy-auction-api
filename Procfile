@@ -1,1 +1,1 @@
-web: uvicorn --host 0.0.0.0:$PORT energy_auction_api.asgi:app
+web: uvicorn --host 0.0.0.0 --port $PORT energy_auction_api.asgi:app
