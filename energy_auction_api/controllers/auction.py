@@ -49,7 +49,7 @@ class AuctionController:
         result = {
             'name': '',
             'total_earnings': 0,
-            'total_engery_negotiated': 0,
+            'total_energy_negotiated': 0,
             'auctions': []
         }
         for item in self._auction_collection.find(
