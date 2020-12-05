@@ -1,4 +1,6 @@
 """Module exposing auction router"""
+from enum import Enum
+
 from fastapi.routing import APIRouter
 
 from ..utils.controller_registry import get_controller
@@ -21,8 +23,15 @@ def get_buyers(auction_controller: AuctionController = get_controller(
     return auction_controller.get_unique_companies(CompanyType.buyer)
 
 
+@ROUTER.get('/power-sources')
+def get_power_sources(auction_controller: AuctionController = get_controller(
+    'AuctionController')):
+    return auction_controller.get_unique_power_source()
+
+
 @ROUTER.get('/detail')
-def get_seller_details(company_code: str,
+def get_seller_details(text: str,
+                       query_type: int,
                        auction_controller: AuctionController = get_controller(
                            'AuctionController')):
-    return auction_controller.get_company_detail(company_code)
+    return auction_controller.get_company_detail(text, query_type)
